@@ -120,6 +120,10 @@ public:
      * Check if VS1053 is ready for data
      * @return true if ready
      */
+    void writeRegister(uint8_t address, uint16_t value);
+	/**
+     * Write data to VS1053
+     */
     bool isReady();
     
     /**
@@ -136,7 +140,6 @@ private:
     uint8_t _reset_pin; // Reset
     
     // Internal methods
-    void writeRegister(uint8_t address, uint16_t value);
     void waitForDREQ();
     void sendMIDIPacket(uint8_t cmd, uint8_t data1, uint8_t data2, bool has_data2);
     bool loadMIDIPlugin();
