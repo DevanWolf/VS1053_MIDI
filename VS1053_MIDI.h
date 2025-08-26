@@ -67,7 +67,7 @@ public:
      * @param note MIDI note number (0-127)
      * @param velocity Release velocity (usually same as note on)
      */
-    void noteOff(uint8_t channel, uint8_t note, uint8_t velocity);
+    void noteOff(uint8_t channel, uint8_t note);
     
     /**
      * Change instrument on a channel

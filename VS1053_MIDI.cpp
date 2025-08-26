@@ -243,9 +243,9 @@ void VS1053_MIDI::noteOn(uint8_t channel, uint8_t note, uint8_t velocity) {
     sendMIDIPacket(0x90 | channel, note, velocity, true);
 }
 
-void VS1053_MIDI::noteOff(uint8_t channel, uint8_t note, uint8_t velocity) {
-    if (channel > 15 || note > 127 || velocity > 127) return;
-    sendMIDIPacket(0x80 | channel, note, velocity, true);
+void VS1053_MIDI::noteOff(uint8_t channel, uint8_t note) {
+    if (channel > 15 || note > 127) return;
+    sendMIDIPacket(0x80 | channel, note, 0, true);
 }
 
 void VS1053_MIDI::setInstrument(uint8_t channel, uint8_t instrument) {
@@ -335,7 +335,6 @@ void VS1053_MIDI::sendMIDIPacket(uint8_t cmd, uint8_t data1, uint8_t data2, bool
     }
     
     digitalWrite(_xdcs_pin, HIGH);
-//    delay(10); // Small delay for processing
 }
 
 bool VS1053_MIDI::loadMIDIPlugin() {
@@ -367,7 +366,5 @@ bool VS1053_MIDI::loadMIDIPlugin() {
 
 void VS1053_MIDI::hardReset() {
     digitalWrite(_reset_pin, LOW);
-    delay(1);
     digitalWrite(_reset_pin, HIGH);
-    delay(1);
 }
